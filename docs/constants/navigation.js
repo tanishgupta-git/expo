@@ -174,7 +174,7 @@ const general = [
     makePage('guides/using-nextjs.md'),
     makePage('guides/using-preact.md'),
   ]),
-  makeSection('Expo Module API (Alpha)', [
+  makeSection('Expo Modules', [
     makePage('modules/overview.md'),
     makePage('modules/module-api.md'),
     makePage('modules/android-lifecycle-listeners.md'),
