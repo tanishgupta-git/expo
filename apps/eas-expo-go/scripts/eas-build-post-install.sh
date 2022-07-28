@@ -36,5 +36,5 @@ elif [ "$EAS_BUILD_PLATFORM" = "android" ]; then
 fi
 
 if [ "$EAS_BUILD_PROFILE" = "versioned-client-add-sdk" ]; then
-  direnv exec . et add-sdk --platform android
+  direnv exec . et add-sdk --platform $EAS_BUILD_PLATFORM 
 fi

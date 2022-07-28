@@ -9,7 +9,8 @@
         "image": "ubuntu-20.04-jdk-11-ndk-r21e",
         "cache": {
           "customPaths": [
-            "../../android/ReactAndroid/prebuiltHermes"
+            "../../android/ReactAndroid/prebuiltHermes",
+            "/home/expo/.gradle/caches/7.3.3"
           ]
         },
         "env": {
@@ -18,6 +19,11 @@
         }
       },
       "ios": {
+        "cache": {
+          "customPaths": [
+            "../../ios/Pods"
+          ]
+        },
         "env": {
           "EAS_BUILD_PLATFORM": "ios"
         }
