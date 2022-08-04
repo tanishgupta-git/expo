@@ -3,7 +3,6 @@
 import UIKit
 import ExpoModulesCore
 
-@objc(EXBlurView)
 public class BlurView: ExpoView {
   private var blurEffectView: BlurEffectView
 
@@ -19,12 +18,10 @@ public class BlurView: ExpoView {
 
   required init?(coder: NSCoder) { nil }
 
-  @objc
   public func setTint(_ tint: String) {
     blurEffectView.tint = tint
   }
 
-  @objc
   public func setIntensity(_ intensity: Double) {
     blurEffectView.intensity = intensity
   }
