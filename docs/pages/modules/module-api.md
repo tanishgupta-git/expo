@@ -248,7 +248,7 @@ Enables the module to be used as a view manager. The view manager definition is 
 ```swift
 ViewManager {
   View {
-    UIView()
+    MyNativeView()
   }
 
   Prop("isHidden") { (view: UIView, hidden: Bool) in
@@ -260,7 +260,7 @@ ViewManager {
 ```kotlin
 ViewManager {
   View { context ->
-    View(context)
+    MyNativeView(context)
   }
 
   Prop("isHidden") { view: View, hidden: Bool ->
