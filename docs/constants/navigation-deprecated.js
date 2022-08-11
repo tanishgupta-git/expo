@@ -218,7 +218,7 @@ const general = [
       makePage('ui-programming/react-native-styling-buttons.md'),
     ]),
   ]),
-  makeSection('Expo Modules', [
+  makeSection('Creating Native Modules', [
     makeGroup('Expo Modules', [
       makePage('modules/overview.md'),
       makePage('modules/module-api.md'),
