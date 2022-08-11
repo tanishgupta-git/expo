@@ -13,7 +13,7 @@ Expo provides a set of APIs and utilities to improve the process of developing n
 
 ## Create a new module
 
-To create a new Expo module from scratch, make the new directory and run `npm create expo-module` or `yarn create expo-module` inside.
+To create a new Expo module from scratch, just run `yarn create expo-module` or `npm create expo-module`.
 The script will ask you a few questions and then generate the native Expo module along with the example app for iOS and Android that uses your new module.
 
 ## Use the Expo Module API in an existing React Native library
