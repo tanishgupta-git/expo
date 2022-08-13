@@ -143,7 +143,7 @@ Defines a native synchronous function that will be exported to JavaScript. Synch
 
 The function can receive up to 8 arguments. This is due to the limitations of generics in both Swift and Kotlin, because this component must be implemented separately for each arity.
 
-See the [Argument Types](#argument-types) section for more details on what types can be used in the function's body.
+See the [Argument Types](#argument-types) section for more details on what types can be used in the function body.
 
 <CodeBlocksTable>
 
@@ -184,7 +184,7 @@ Defines a JavaScript function that always returns a `Promise` and whose native c
 If the type of the last argument is `Promise`, the function will wait for the promise to be resolved or rejected before the response is passed back to JavaScript. Otherwise, the function is immediately resolved with the returned value or rejected if it throws an exception.
 The function can receive up to 8 arguments (including the promise).
 
-See the [Argument Types](#argument-types) section for more details on what types can be used in the function's body.
+See the [Argument Types](#argument-types) section for more details on what types can be used in the function body.
 
 It is recommended to use `AsyncFunction` over `Function` when it:
 
@@ -272,7 +272,7 @@ ViewManager {
 </CodeBlocksTable>
 
 > **Note** The API for view managers is still experimental and subject to change.
-> We are investigating how to integrate it with [React Native's new architecture (Fabric)](https://reactnative.dev/architecture/fabric-renderer) which may require us to make some API changes.
+> We are investigating how to integrate with [React Native's new architecture (Fabric)](https://reactnative.dev/architecture/fabric-renderer), which may require API changes.
 
 > **Note** Support for rendering SwiftUI views is planned. For now, you can use [`UIHostingController`](https://developer.apple.com/documentation/swiftui/uihostingcontroller) and add its content view to your UIKit view.
 
