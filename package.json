@@ -21,7 +21,7 @@
     ]
   },
   "resolutions": {
-    "react-native": "0.69.4",
+    "react-native": "npm:react-native-tvos@0.68.2-5",
     "**/util": "~0.12.4"
   },
   "dependencies": {
