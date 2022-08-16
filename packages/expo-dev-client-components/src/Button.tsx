@@ -193,7 +193,14 @@ function ScaleOnPressContainer({
   };
 
   return (
-    <Container onPressIn={onPressIn} onPressOut={onPressOut} {...props} style={[scaleStyle]}>
+    <Container
+      isTVSelectable
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
+      onFocus={onPressIn}
+      onBlur={onPressOut}
+      {...props}
+      style={[scaleStyle]}>
       <Animated.View style={underlayStyle}>{props.children}</Animated.View>
     </Container>
   );
