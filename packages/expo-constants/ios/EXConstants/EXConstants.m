@@ -3,10 +3,14 @@
 #import <EXConstants/EXConstants.h>
 #import <ExpoModulesCore/EXConstantsInterface.h>
 
+#if !TARGET_OS_TV
 #import <WebKit/WKWebView.h>
+#endif
 
 @interface EXConstants () {
+#if !TARGET_OS_TV
   WKWebView *webView;
+#endif
 }
 
 @property (nonatomic, strong) NSString *webViewUserAgent;
@@ -37,6 +41,9 @@ EX_EXPORT_METHOD_AS(getWebViewUserAgentAsync,
                     getWebViewUserAgentWithResolver:(EXPromiseResolveBlock)resolve
                     rejecter:(EXPromiseRejectBlock)reject)
 {
+#if TARGET_OS_TV
+  resolve(EXNullIfNil(nil));
+#else
   __weak EXConstants *weakSelf = self;
   dispatch_async(dispatch_get_main_queue(), ^{
     __strong EXConstants *strongSelf = weakSelf;
@@ -61,6 +68,7 @@ EX_EXPORT_METHOD_AS(getWebViewUserAgentAsync,
       }
     }
   });
+#endif
 }
 
 @end

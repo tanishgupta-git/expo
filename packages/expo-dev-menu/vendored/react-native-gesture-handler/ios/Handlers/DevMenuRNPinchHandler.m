@@ -10,7 +10,11 @@
 
 #import "DevMenuRNPinchHandler.h"
 
+#if TARGET_OS_TV
+@interface DevMenuRNBetterPinchRecognizer : UIGestureRecognizer
+#else
 @interface DevMenuRNBetterPinchRecognizer : UIPinchGestureRecognizer
+#endif
 
 - (id)initWithGestureHandler:(DevMenuRNGestureHandler*)gestureHandler;
 
@@ -31,7 +35,9 @@
 - (void)handleGesture:(UIGestureRecognizer *)recognizer
 {
   if (self.state == UIGestureRecognizerStateBegan) {
+#if !TARGET_OS_TV
     self.scale = 1;
+#endif
   }
   [_gestureHandler handleGesture:recognizer];
 }

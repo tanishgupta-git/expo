@@ -235,9 +235,9 @@
   if (@available(iOS 13.4, *)) {
     recognizer.allowedScrollTypesMask = 0;
   }
-#endif
   recognizer.minimumNumberOfTouches = 1;
   recognizer.maximumNumberOfTouches = NSUIntegerMax;
+#endif
   recognizer.minDistSq = NAN;
   recognizer.minVelocitySq = NAN;
 }

@@ -187,6 +187,7 @@ open class ExpoAppDelegate: UIResponder, UIApplicationDelegate {
     }
   }
 
+#if !os(tvOS)
   open func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
     let selector = #selector(application(_:performActionFor:completionHandler:))
     let subs = subscribers.filter { $0.responds(to: selector) }
@@ -209,6 +210,7 @@ open class ExpoAppDelegate: UIResponder, UIApplicationDelegate {
       subscriber.application?(application, performActionFor: shortcutItem, completionHandler: handler)
     }
   }
+#endif
 
   // MARK: - Background Fetch
 

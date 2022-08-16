@@ -7,8 +7,11 @@
 //
 
 #import "DevMenuRNRotationHandler.h"
-
+#if TARGET_OS_TV
+@interface DevMenuRNBetterRotationRecognizer : UIGestureRecognizer
+#else
 @interface DevMenuRNBetterRotationRecognizer : UIRotationGestureRecognizer
+#endif
 
 - (id)initWithGestureHandler:(DevMenuRNGestureHandler*)gestureHandler;
 
@@ -29,7 +32,9 @@
 - (void)handleGesture:(UIGestureRecognizer *)recognizer
 {
   if (self.state == UIGestureRecognizerStateBegan) {
+#if !TARGET_OS_TV
     self.rotation = 0;
+#endif
   }
   [_gestureHandler handleGesture:recognizer];
 }

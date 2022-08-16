@@ -22,9 +22,11 @@ RCT_EXPORT_METHOD(copyToClipboardAsync:(NSString *)content
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
+#if !TARGET_OS_TV
   UIPasteboard *clipboard = [UIPasteboard generalPasteboard];
   clipboard.string = (content ?: @"");
   resolve(nil);
+#endif
 }
 
 RCT_EXTERN_METHOD(fireCallback:(NSString *)name

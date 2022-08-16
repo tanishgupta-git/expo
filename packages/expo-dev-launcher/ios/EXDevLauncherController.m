@@ -504,7 +504,9 @@
   self.manifest = manifest;
   self.manifestURL = appUrl;
   _possibleManifestURL = nil;
+#if !TARGET_OS_TV
   __block UIInterfaceOrientation orientation = [EXDevLauncherManifestHelper exportManifestOrientation:manifest.orientation];
+#endif
   __block UIColor *backgroundColor = [EXDevLauncherManifestHelper hexStringToColor:manifest.iosOrRootBackgroundColor];
   
   __weak __typeof(self) weakSelf = self;
@@ -684,8 +686,10 @@
 }
 
 -(void)copyToClipboard:(NSString *)content {
+#if !TARGET_OS_TV
   UIPasteboard *clipboard = [UIPasteboard generalPasteboard];
   clipboard.string = (content ? : @"");
+#endif
 }
 
 - (void)setDevMenuAppBridge

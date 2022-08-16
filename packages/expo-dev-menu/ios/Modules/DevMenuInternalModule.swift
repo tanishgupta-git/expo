@@ -1,6 +1,8 @@
 // Copyright 2015-present 650 Industries. All rights reserved.
 
+#if !os(tvOS)
 import SafariServices
+#endif
 import React
 
 @objc(DevMenuInternalModule)

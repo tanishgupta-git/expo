@@ -90,11 +90,15 @@ EX_REGISTER_MODULE();
 
 - (CGFloat)statusBarHeight
 {
+#if TARGET_OS_TV
+  return 0;
+#else
   __block CGSize statusBarSize;
   [EXUtilities performSynchronouslyOnMainThread:^{
     statusBarSize = [UIApplication sharedApplication].statusBarFrame.size;
   }];
   return MIN(statusBarSize.width, statusBarSize.height);
+#endif
 }
 
 - (NSString *)iosVersion

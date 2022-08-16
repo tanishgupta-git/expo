@@ -4,7 +4,9 @@
 #import "EXDevLauncherController.h"
 
 #import <React/RCTBridge.h>
+#if !TARGET_OS_TV
 #import <SafariServices/SafariServices.h>
+#endif
 
 #if __has_include(<EXDevLauncher/EXDevLauncher-Swift.h>)
 // For cocoapods framework, the generated swift header will be inside EXDevLauncher module
@@ -21,7 +23,9 @@ NSString *DEV_LAUNCHER_DEFAULT_SCHEME = @"expo-dev-launcher";
 
 @property (nonatomic, copy) RCTPromiseResolveBlock redirectResolve;
 @property (nonatomic, copy) RCTPromiseRejectBlock redirectReject;
+#if !TARGET_OS_TV
 @property (nonatomic, strong) SFAuthenticationSession *authSession;
+#endif
 
 @end
 
@@ -37,6 +41,7 @@ RCT_EXPORT_METHOD(openAuthSessionAsync:(NSString *)authURL
                               resolver:(RCTPromiseResolveBlock)resolve
                               rejecter:(RCTPromiseRejectBlock)reject)
 {
+#if !TARGET_OS_TV
   if (![self initializeWebBrowserWithResolver:resolve andRejecter:reject]) {
     return;
   }
@@ -66,7 +71,9 @@ RCT_EXPORT_METHOD(openAuthSessionAsync:(NSString *)authURL
                                                   callbackURLScheme:redirectURL
                                                   completionHandler:completionHandler];
     [self.authSession start];
-  } else {
+  } else
+#endif
+  {
     resolve(@{
               @"type" : @"cancel",
               @"message" : @"openAuthSessionAsync requires iOS 11 or greater"

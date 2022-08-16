@@ -4,6 +4,12 @@
 // Otherwise they won't be visible in `ExpoModulesCore-Swift.h`.
 #import <React/RCTView.h>
 
+#if __has_include("ExpoModulesCore-tvOS-umbrella.h")
+#import "ExpoModulesCore-tvOS-umbrella.h"
+#endif
+#if __has_include("ExpoModulesCore-iOS-umbrella.h")
+#import "ExpoModulesCore-iOS-umbrella.h"
+#endif
 #if __has_include("ExpoModulesCore-umbrella.h")
 #import "ExpoModulesCore-umbrella.h"
 #endif

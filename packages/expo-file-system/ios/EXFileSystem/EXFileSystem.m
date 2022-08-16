@@ -1057,10 +1057,14 @@ EX_EXPORT_METHOD_AS(getTotalDiskCapacityAsync, getTotalDiskCapacityAsyncWithReso
 // '<ARCType> *__autoreleasing*' problem solution: https://stackoverflow.com/a/8862061/4337317
 - (NSNumber *)freeDiskStorageWithError:(out NSError * __autoreleasing *)error
 {
+#if TARGET_OS_TV
+  return @(0);
+#else
   NSDictionary *results = [self documentFileResourcesForKeys:@[NSURLVolumeAvailableCapacityForImportantUsageKey] 
                                                        error:error];
 
   return results[NSURLVolumeAvailableCapacityForImportantUsageKey];
+#endif
 }
 
 @end
