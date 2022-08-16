@@ -36,7 +36,7 @@ Pod::Spec.new do |s|
   s.license        = package['license']
   s.author         = package['author']
   s.homepage       = package['homepage']
-  s.platform       = :ios, '12.0'
+  s.platforms      = { :ios => '12.0', :tvos => '12.0' }
   s.swift_version  = '5.2'
   s.source         = { git: 'https://github.com/expo/expo.git' }
   s.static_framework = true
@@ -86,14 +86,14 @@ Pod::Spec.new do |s|
     reanimated.dependency 'React-Core'
     reanimated.dependency 'React-CoreModules'
     reanimated.dependency 'React-Core/DevSupport'
-    reanimated.dependency 'React-RCTActionSheet'
+    # reanimated.dependency 'React-RCTActionSheet'
     reanimated.dependency 'React-RCTNetwork'
     reanimated.dependency 'React-RCTAnimation'
     reanimated.dependency 'React-RCTLinking'
     reanimated.dependency 'React-RCTBlob'
     reanimated.dependency 'React-RCTSettings'
     reanimated.dependency 'React-RCTText'
-    reanimated.dependency 'React-RCTVibration'
+    # reanimated.dependency 'React-RCTVibration'
     reanimated.dependency 'React-RCTImage'
     reanimated.dependency 'React-Core/RCTWebSocket'
     reanimated.dependency 'React-cxxreact'
