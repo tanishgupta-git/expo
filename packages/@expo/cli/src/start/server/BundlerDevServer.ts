@@ -348,6 +348,13 @@ export abstract class BundlerDevServer {
       : this.getUrlCreator().constructUrl({ ...opts, scheme: 'exp' });
   }
 
+  public getQRCodeUrl(opts: Partial<CreateURLOptions> = {}) {
+    const { scheme, ...restOpts } = opts;
+    return this.shouldUseInterstitialPage()
+      ? this.getUrlCreator().constructLoadingUrl(restOpts, null)
+      : this.getNativeRuntimeUrl(opts);
+  }
+
   /** Get the URL for the running instance of the dev server. */
   public getDevServerUrl(options: { hostType?: 'localhost' } = {}): string | null {
     const instance = this.getInstance();
@@ -403,6 +410,8 @@ export abstract class BundlerDevServer {
   protected shouldUseInterstitialPage(): boolean {
     return (
       env.EXPO_ENABLE_INTERSTITIAL_PAGE &&
+      // if user passed --dev-client flag, skip interstitial page
+      !this.isDevClient &&
       // Checks if dev client is installed.
       !!resolveFrom.silent(this.projectRoot, 'expo-dev-launcher')
     );
@@ -420,7 +429,7 @@ export abstract class BundlerDevServer {
     const loadingUrl =
       platform === 'emulator'
         ? this.urlCreator?.constructLoadingUrl({}, 'android')
-        : this.urlCreator?.constructLoadingUrl({ hostType: 'localhost' }, 'ios');
+        : this.urlCreator?.constructLoadingUrl({}, 'ios');
     return loadingUrl ?? null;
   }
 
