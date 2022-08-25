@@ -66,10 +66,6 @@ class Env {
   get EXPO_NO_CACHE() {
     return boolish('EXPO_NO_CACHE', false);
   }
-  /** Enable the experimental interstitial app select page. */
-  get EXPO_ENABLE_INTERSTITIAL_PAGE() {
-    return boolish('EXPO_ENABLE_INTERSTITIAL_PAGE', false);
-  }
   /** The React Metro port that's baked into react-native scripts and tools. */
   get RCT_METRO_PORT() {
     return int('RCT_METRO_PORT', 0);

@@ -8,7 +8,6 @@ import { APISettings } from '../../api/settings';
 import * as Log from '../../log';
 import { FileNotifier } from '../../utils/FileNotifier';
 import { resolveWithTimeout } from '../../utils/delay';
-import { env } from '../../utils/env';
 import { CommandError } from '../../utils/errors';
 import {
   BaseOpenInCustomProps,
@@ -409,7 +408,6 @@ export abstract class BundlerDevServer {
   /** Should use the interstitial page for selecting which runtime to use. */
   protected shouldUseInterstitialPage(): boolean {
     return (
-      env.EXPO_ENABLE_INTERSTITIAL_PAGE &&
       // if user passed --dev-client flag, skip interstitial page
       !this.isDevClient &&
       // Checks if dev client is installed.

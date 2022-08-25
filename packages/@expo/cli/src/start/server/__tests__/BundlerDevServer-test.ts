@@ -32,12 +32,10 @@ beforeAll(() => {
 
 beforeEach(() => {
   vol.reset();
-  delete process.env.EXPO_ENABLE_INTERSTITIAL_PAGE;
 });
 
 afterAll(() => {
   process.chdir(originalCwd);
-  delete process.env.EXPO_ENABLE_INTERSTITIAL_PAGE;
 });
 
 class MockBundlerDevServer extends BundlerDevServer {
@@ -184,7 +182,6 @@ describe('getExpoGoUrl', () => {
 
 describe('getInterstitialPageUrl', () => {
   it(`gets the interstitial page URL if dev-launcher is installed`, async () => {
-    process.env.EXPO_ENABLE_INTERSTITIAL_PAGE = '1';
     vol.fromJSON(
       {
         'node_modules/expo-dev-launcher/package.json': '',
@@ -209,7 +206,6 @@ describe('getInterstitialPageUrl', () => {
     expect(urlCreator.constructLoadingUrl).toBeCalledTimes(2);
   });
   it(`returns null if dev-launcher is not installed`, async () => {
-    process.env.EXPO_ENABLE_INTERSTITIAL_PAGE = '1';
     const server = new MockBundlerDevServer('/', getPlatformBundlers({}));
     await server.startAsync({
       location: {},
@@ -251,7 +247,6 @@ describe('getNativeRuntimeUrl', () => {
 
 describe('getQRCodeUrl', () => {
   it(`gets the interstitial page URL`, async () => {
-    process.env.EXPO_ENABLE_INTERSTITIAL_PAGE = '1';
     vol.fromJSON(
       {
         'node_modules/expo-dev-launcher/package.json': '',
