@@ -521,7 +521,7 @@ Use the following dependencies in a library that provides a config plugin:
 ```
 
 - You may update the exact versions of `@expo/config-types` and `expo` to build against a specific version.
-- For simple config plugins that depend on core, stable APIs, such as a plugin that only modifies **Info.plist** or **AndroidManifest.xml**, you can use a loose dependency such as in the example above.
+- For simple config plugins that depend on core, stable APIs, such as a plugin that only modifies **Info.plist** or **AndroidManifest.xml**, you can use a loose dependency as shown in the example above.
 - You may also want to install [`expo-module-scripts`](https://github.com/expo/expo/blob/main/packages/expo-module-scripts/README.md) as a development dependency, but it's not required.
 
 ### Importing the config plugins package
