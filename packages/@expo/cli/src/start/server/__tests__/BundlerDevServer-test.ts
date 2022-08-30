@@ -99,7 +99,7 @@ class MockBundlerDevServer extends BundlerDevServer {
     return super.getExpoGoUrl(platform);
   }
 
-  public getInterstitialPageUrl(platform: 'simulator' | 'emulator'): string | null {
+  public getInterstitialPageUrl(platform: 'simulator' | 'emulator' | null = null): string | null {
     return super.getInterstitialPageUrl(platform);
   }
 }
@@ -206,7 +206,8 @@ describe('getInterstitialPageUrl', () => {
     expect(server.getInterstitialPageUrl('simulator')).toBe(
       'http://100.100.1.100:3000/_expo/loading?platform=ios'
     );
-    expect(urlCreator.constructLoadingUrl).toBeCalledTimes(2);
+    expect(server.getInterstitialPageUrl()).toBe('http://100.100.1.100:3000/_expo/loading');
+    expect(urlCreator.constructLoadingUrl).toBeCalledTimes(3);
   });
   it(`returns null if dev-launcher is not installed`, async () => {
     process.env.EXPO_ENABLE_INTERSTITIAL_PAGE = '1';
@@ -221,56 +222,6 @@ describe('getInterstitialPageUrl', () => {
 });
 
 describe('getNativeRuntimeUrl', () => {
-  it(`gets the native runtime URL`, async () => {
-    const server = new MockBundlerDevServer('/', getPlatformBundlers({}));
-    await server.startAsync({
-      location: {},
-    });
-    expect(server.getNativeRuntimeUrl()).toBe('exp://100.100.1.100:3000');
-    expect(server.getNativeRuntimeUrl({ hostname: 'localhost' })).toBe('exp://127.0.0.1:3000');
-    expect(server.getNativeRuntimeUrl({ scheme: 'foobar' })).toBe('exp://100.100.1.100:3000');
-  });
-  it(`gets the native runtime URL for dev client`, async () => {
-    const server = new MockBundlerDevServer('/', getPlatformBundlers({}), true);
-    await server.startAsync({
-      location: {
-        scheme: 'my-app',
-      },
-    });
-    expect(server.getNativeRuntimeUrl()).toBe(
-      'my-app://expo-development-client/?url=http%3A%2F%2F100.100.1.100%3A3000'
-    );
-    expect(server.getNativeRuntimeUrl({ hostname: 'localhost' })).toBe(
-      'my-app://expo-development-client/?url=http%3A%2F%2F127.0.0.1%3A3000'
-    );
-    expect(server.getNativeRuntimeUrl({ scheme: 'foobar' })).toBe(
-      'foobar://expo-development-client/?url=http%3A%2F%2F100.100.1.100%3A3000'
-    );
-  });
-});
-
-describe('getQRCodeUrl', () => {
-  it(`gets the interstitial page URL`, async () => {
-    process.env.EXPO_ENABLE_INTERSTITIAL_PAGE = '1';
-    vol.fromJSON(
-      {
-        'node_modules/expo-dev-launcher/package.json': '',
-      },
-      '/'
-    );
-
-    const server = new MockBundlerDevServer('/', getPlatformBundlers({}));
-    await server.startAsync({
-      location: {},
-    });
-    expect(server.getQRCodeUrl()).toBe('http://100.100.1.100:3000/_expo/loading');
-    expect(server.getQRCodeUrl({ hostname: 'localhost' })).toBe(
-      'http://127.0.0.1:3000/_expo/loading'
-    );
-    expect(server.getQRCodeUrl({ scheme: 'foobar' })).toBe(
-      'http://100.100.1.100:3000/_expo/loading'
-    );
-  });
   it(`gets the native runtime URL`, async () => {
     const server = new MockBundlerDevServer('/', getPlatformBundlers({}));
     await server.startAsync({

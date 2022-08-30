@@ -348,13 +348,6 @@ export abstract class BundlerDevServer {
       : this.getUrlCreator().constructUrl({ ...opts, scheme: 'exp' });
   }
 
-  public getQRCodeUrl(opts: Partial<CreateURLOptions> = {}) {
-    const { scheme, ...restOpts } = opts;
-    return this.shouldUseInterstitialPage()
-      ? this.getUrlCreator().constructLoadingUrl(restOpts, null)
-      : this.getNativeRuntimeUrl(opts);
-  }
-
   /** Get the URL for the running instance of the dev server. */
   public getDevServerUrl(options: { hostType?: 'localhost' } = {}): string | null {
     const instance = this.getInstance();
@@ -422,15 +415,20 @@ export abstract class BundlerDevServer {
     return this.urlCreator?.constructUrl({ scheme: 'exp' }) ?? null;
   }
 
-  protected getInterstitialPageUrl(platform: keyof typeof PLATFORM_MANAGERS): string | null {
+  public getInterstitialPageUrl(
+    platform: keyof typeof PLATFORM_MANAGERS | null = null
+  ): string | null {
     if (!this.shouldUseInterstitialPage()) {
       return null;
     }
-    const loadingUrl =
-      platform === 'emulator'
-        ? this.urlCreator?.constructLoadingUrl({}, 'android')
-        : this.urlCreator?.constructLoadingUrl({}, 'ios');
-    return loadingUrl ?? null;
+    if (platform) {
+      const loadingUrl =
+        platform === 'emulator'
+          ? this.urlCreator?.constructLoadingUrl({}, 'android')
+          : this.urlCreator?.constructLoadingUrl({}, 'ios');
+      return loadingUrl ?? null;
+    }
+    return this.urlCreator?.constructLoadingUrl({}, null) ?? null;
   }
 
   protected async getPlatformManagerAsync(platform: keyof typeof PLATFORM_MANAGERS) {
