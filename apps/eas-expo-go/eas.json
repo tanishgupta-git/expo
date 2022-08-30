@@ -5,6 +5,7 @@
   },
   "build": {
     "base": {
+      "credentialsSource": "local",
       "android": {
         "image": "ubuntu-20.04-jdk-11-ndk-r21e",
         "cache": {

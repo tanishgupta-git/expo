@@ -33,7 +33,8 @@ runs:
       shell: bash
       id: build_start
       run: |
-        BUILD_ID=$(eas build -p $PLATFORM --profile $EAS_BUILD_PROFILE --resource-class ${{ inputs.resourceClass }} --non-interactive --json --no-wait | jq -r ".[0].id")
+        MESSAGE=$(git log -1 --pretty=%B)
+        BUILD_ID=$(eas build -p $PLATFORM --profile $EAS_BUILD_PROFILE --message "$MESSAGE" --resource-class ${{ inputs.resourceClass }} --non-interactive --json --no-wait | jq -r ".[0].id")
         echo ::set-output name=build_id::"$BUILD_ID"
       working-directory: ${{ inputs.projectRoot }}
       env:

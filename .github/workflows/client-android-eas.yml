@@ -84,6 +84,22 @@ jobs:
           else
             echo ::set-output name=profile::"unversioned-client"
           fi
+      - name: Generate local credentials.json
+        working-directory: ./apps/eas-expo-go
+        run: |
+          cat >credentials.json <<EOL
+          {
+            "android": {
+              "keystore": {
+                "keystorePath": "release.keystore",
+                "keystorePassword": "$ANDROID_KEYSTORE_PASSWORD",
+                "keyAlias": "ExponentKey",
+                "keyPassword": "$ANDROID_KEYSTORE_PASSWORD"
+              }
+            }
+          }
+          EOL
+          echo $ANDROID_KEYSTORE_B64 | base64 -d > release.keystore
       - name: Build
         uses: ./.github/actions/eas-build
         id: build
