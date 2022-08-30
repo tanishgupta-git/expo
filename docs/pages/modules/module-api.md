@@ -6,7 +6,7 @@ import { CodeBlocksTable } from '~/components/plugins/CodeBlocksTable';
 import { PlatformTag } from '~/ui/components/Tag';
 import { APIBox } from '~/components/plugins/APIBox';
 
-The Expo Modules API for native modules is an abstraction layer on top of React Native modules that helps you build native modules in modern languages (Swift and Kotlin) with an easy to use and convenient API that is consistent across platforms where possible.
+The Expo native modules API is an abstraction layer on top of React Native modules that helps you build native modules in modern languages (Swift and Kotlin) with an easy to use and convenient API that is consistent across platforms where possible.
 
 ## Design considerations
 
