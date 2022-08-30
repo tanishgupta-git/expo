@@ -14,6 +14,10 @@
 - Rename Web-specific prop types from `GLViewProps` to `GLViewWebProps`. ([#18322](https://github.com/expo/expo/pull/18322) by [@Simek](https://github.com/Simek))
 - Merge `expo-gl-cpp` package into `expo-gl`. ([#18875](https://github.com/expo/expo/pull/18875) by [@wkozyra95](https://github.com/wkozyra95))
 
+### ⚠️ Notices
+
+- Bumped iOS deployment target to 13.0 and deprecated support for iOS 12. ([#18873](https://github.com/expo/expo/pull/18873) by [@tsapeta](https://github.com/tsapeta))
+
 ## 11.4.0 — 2022-07-07
 
 ### 🐛 Bug fixes

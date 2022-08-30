@@ -14,6 +14,10 @@
 
 - Update docs to remove mentions of `expo start:web`. ([#18419](https://github.com/expo/expo/pull/18419) by [@EvanBacon](https://github.com/EvanBacon))
 
+### ⚠️ Notices
+
+- Bumped iOS deployment target to 13.0 and deprecated support for iOS 12. ([#18873](https://github.com/expo/expo/pull/18873) by [@tsapeta](https://github.com/tsapeta))
+
 ## 11.0.0 — 2022-07-07
 
 ### 🎉 New features
