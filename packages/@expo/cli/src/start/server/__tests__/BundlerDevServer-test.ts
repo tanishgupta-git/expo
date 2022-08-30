@@ -32,10 +32,12 @@ beforeAll(() => {
 
 beforeEach(() => {
   vol.reset();
+  delete process.env.EXPO_NO_REDIRECT_PAGE;
 });
 
 afterAll(() => {
   process.chdir(originalCwd);
+  delete process.env.EXPO_NO_REDIRECT_PAGE;
 });
 
 class MockBundlerDevServer extends BundlerDevServer {
@@ -214,6 +216,23 @@ describe('getInterstitialPageUrl', () => {
     expect(server.getInterstitialPageUrl('emulator')).toBeNull();
     expect(server.getInterstitialPageUrl('simulator')).toBeNull();
   });
+});
+it(`returns null if EXPO_NO_REDIRECT_PAGE is truthy`, async () => {
+  process.env.EXPO_NO_REDIRECT_PAGE = '1';
+  vol.fromJSON(
+    {
+      'node_modules/expo-dev-launcher/package.json': '',
+    },
+    '/'
+  );
+
+  const server = new MockBundlerDevServer('/', getPlatformBundlers({}));
+  await server.startAsync({
+    location: {},
+  });
+
+  expect(server.getInterstitialPageUrl('emulator')).toBeNull();
+  expect(server.getInterstitialPageUrl('simulator')).toBeNull();
 });
 
 describe('getNativeRuntimeUrl', () => {

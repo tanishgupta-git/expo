@@ -66,6 +66,10 @@ class Env {
   get EXPO_NO_CACHE() {
     return boolish('EXPO_NO_CACHE', false);
   }
+  /** Disable the app select redirect page. */
+  get EXPO_NO_REDIRECT_PAGE() {
+    return boolish('EXPO_NO_REDIRECT_PAGE', false);
+  }
   /** The React Metro port that's baked into react-native scripts and tools. */
   get RCT_METRO_PORT() {
     return int('RCT_METRO_PORT', 0);
